@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\Employee;
 use App\Models\Student;
 use App\Models\User;
+use App\Services\MailService;
 use App\Services\UserService;
 use App\Http\Controllers\Controller;
 use DB;
@@ -39,6 +40,7 @@ class RegisterController extends Controller
 
         $data = $request->all();
         $userService = new UserService();
+        $mailService = new MailService();
         $userCreate = null;
         $individualRegistered = false;
 
@@ -46,6 +48,7 @@ class RegisterController extends Controller
         try {
             $userCreate = User::create([
                 'id_user' => $userService->GenerateUserId($data['id_role']),
+                'id_role' => $data['id_role'],
                 'name' => $data['name'],
                 'last_name' => $data['last_name'],
                 'email' => $data['email'],
@@ -92,6 +95,8 @@ class RegisterController extends Controller
                 'error' => $e->getMessage()
             ], 500);
         }
+        
+        $mailService->sendWelcomeEmail($userCreate);
 
         //========================================================= //
         return response()->json([
@@ -150,7 +155,6 @@ class RegisterController extends Controller
     {
         $employeeCreated = Employee::create([
             'id_user' => $user->id_user,
-            'id_role' => $request->input('id_role'),
             'weight' => $request->input('weight'),
         ]);
         
