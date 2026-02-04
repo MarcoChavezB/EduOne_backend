@@ -45,8 +45,6 @@ class RegisterController extends Controller
             'afac_password' => 'nullable|string|max:255',
             'afac_emission' => 'nullable|date',
             'afac_expiration' => 'nullable|date',
-            // Campos adicionales para empleados
-            'weight' => 'required_if:id_role,!=,7|numeric|min:0',
         ]);
         
         if ($validator->fails()) {
