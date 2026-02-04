@@ -13,16 +13,16 @@
 
             <!-- Contenedor principal -->
             <table width="600" cellpadding="0" cellspacing="0"
-                   style="background-color: #ffffff; border-radius: 8px; overflow: hidden;
-                   box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+                   style="background-color: #ffffff; border-radius: 6px; overflow: hidden;
+                   box-shadow: 0 0 8px rgba(0,0,0,0.04);">
 
                 <!-- Header -->
                 <tr>
-                    <td style="background-color: #1e40af; padding: 25px; text-align: center;">
-                        <h1 style="color: #ffffff; margin: 0;">
-                            🏢 EduOne
+                    <td style="background-color: #1e40af; padding: 22px; text-align: center;">
+                        <h1 style="color: #ffffff; margin: 0; font-size: 24px;">
+                            EduOne
                         </h1>
-                        <p style="color: #dbeafe; margin: 5px 0 0;">
+                        <p style="color: #dbeafe; margin: 4px 0 0; font-size: 14px;">
                             Plataforma Corporativa
                         </p>
                     </td>
@@ -30,63 +30,77 @@
 
                 <!-- Contenido -->
                 <tr>
-                    <td style="padding: 35px; color: #333333;">
+                    <td style="padding: 32px; color: #333333;">
 
-                        <h2 style="margin-top: 0;">
-                            Bienvenido/a, {{ $user->name }} 👋
+                        <h2 style="margin-top: 0; font-size: 20px;">
+                            Hola {{ $user->name }},
                         </h2>
 
-                        <p style="font-size: 16px; line-height: 1.6;">
-                            Nos complace darte la bienvenida al equipo de <strong>EduOne</strong>.
-                            A partir de este momento, cuentas con acceso a nuestro sistema interno.
+                        <p style="font-size: 15px; line-height: 1.6;">
+                            Te damos la bienvenida al sistema de <strong>EduOne</strong>.
+                            A partir de ahora podrás acceder a la plataforma para gestionar
+                            tus actividades y consultar información interna.
                         </p>
 
-                        <p style="font-size: 16px; line-height: 1.6;">
-                            Desde la plataforma podrás gestionar tus actividades,
-                            consultar información institucional y colaborar con tu equipo.
+                        <p style="font-size: 15px; line-height: 1.6;">
+                            Tu cuenta ya se encuentra activa y lista para usarse.
                         </p>
 
                         <!-- Datos de acceso -->
-                        <div style="background-color: #f8fafc; border-left: 4px solid #1e40af;
-                                    padding: 15px; margin: 25px 0;">
+                        <div style="background-color: #f8fafc;
+                                    border-left: 4px solid #1e40af;
+                                    padding: 15px 18px;
+                                    margin: 25px 0;">
 
-                            <p style="margin: 0; font-size: 15px;">
-                                📌 <strong>Datos de acceso:</strong>
+                            <p style="margin: 0; font-size: 14px; font-weight: bold;">
+                                Datos de acceso
                             </p>
 
-                            <p style="margin: 8px 0 0; font-size: 15px;">
-                                Usuario: <strong>{{ $user->email }}</strong><br>
+                            <p style="margin: 8px 0 0; font-size: 14px; line-height: 1.6;">
+                                Puedes iniciar sesión utilizando cualquiera de las siguientes opciones:
+                            </p>
+
+                            <p style="margin: 8px 0 0; font-size: 14px; line-height: 1.6;">
+                                • Correo: <strong>{{ $user->email }}</strong><br>
+                                • Identificador: <strong>{{ $user->id_user }}</strong>
+                            </p>
+
+                            <p style="margin: 8px 0 0; font-size: 14px; line-height: 1.6;">
+                                Contraseña inicial: <strong>Fecha de registro (dd/mm/yy)</strong>
                             </p>
 
                         </div>
 
                         <!-- Botón -->
-                        <div style="text-align: center; margin: 30px 0;">
+                        <div style="text-align: center; margin: 28px 0;">
                             <a href="{{ url('/') }}"
                                style="
                                background-color: #1e40af;
                                color: #ffffff;
                                text-decoration: none;
-                               padding: 12px 25px;
-                               border-radius: 5px;
-                               font-weight: bold;
+                               padding: 11px 24px;
+                               border-radius: 4px;
+                               font-size: 14px;
+                               font-weight: 600;
                                display: inline-block;
                                ">
-                                Acceder al Sistema
+                                Ingresar al sistema
                             </a>
                         </div>
 
-                        <p style="font-size: 15px; line-height: 1.6;">
-                            Por seguridad, te recomendamos cambiar tu contraseña
-                            en tu primer inicio de sesión.
+                        <p style="font-size: 14px; line-height: 1.6;">
+                            Por motivos de seguridad, te recomendamos cambiar tu contraseña
+                            la primera vez que ingreses.
                         </p>
 
-                        <p>
-                            Si tienes alguna consulta, comunícate con el área de soporte.
+                        <p style="font-size: 14px; line-height: 1.6;">
+                            Si presentas algún inconveniente para acceder, puedes comunicarte
+                            con el área de soporte.
                         </p>
 
-                        <p style="margin-bottom: 0;">
-                            Te deseamos mucho éxito en esta nueva etapa. 🤝
+                        <p style="margin-bottom: 0; font-size: 14px;">
+                            Saludos,<br>
+                            Equipo de EduOne
                         </p>
 
                     </td>
@@ -94,8 +108,11 @@
 
                 <!-- Footer -->
                 <tr>
-                    <td style="background-color: #f1f5f9; padding: 20px;
-                               text-align: center; font-size: 14px; color: #666666;">
+                    <td style="background-color: #f1f5f9;
+                               padding: 18px;
+                               text-align: center;
+                               font-size: 13px;
+                               color: #666666;">
                         © {{ date('Y') }} EduOne · Aviatraining and Technology
                     </td>
                 </tr>

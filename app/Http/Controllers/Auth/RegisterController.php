@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use DB;
 use Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -30,13 +31,31 @@ class RegisterController extends Controller
      * @return \Illuminate\Http\JsonResponse Respuesta JSON con el resultado del registro.
      */
     public function register(Request $request){
-        $request->validate([
+        $validator = Validator::make($request->all(), [
+            'id_role' => 'required|integer|exists:roles,id_role',
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|confirmed|min:8',
-            'id_role' => 'required|integer|exists:roles,id_role',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'password' => 'required|string|min:6|confirmed',
+            // Campos adicionales para estudiantes
+            'id_career' => 'required_if:id_role,7|integer|exists:careers,id_career',
+            'emergency_contact' => 'required_if:id_role,7|string|max:255',
+            'enrollment_date' => 'required_if:id_role,7|date',
+            'afac_user' => 'nullable|string|max:255',
+            'afac_password' => 'nullable|string|max:255',
+            'afac_emission' => 'nullable|date',
+            'afac_expiration' => 'nullable|date',
+            // Campos adicionales para empleados
+            'weight' => 'required_if:id_role,!=,7|numeric|min:0',
         ]);
+        
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error de validación',
+                'errors' => $validator->errors()
+            ], 422);
+        }
 
         $data = $request->all();
         $userService = new UserService();
